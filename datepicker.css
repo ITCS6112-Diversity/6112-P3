@@ -1,16 +1,32 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  text-align: center;
+}
+
 table {
   border: 1px solid #333;
+  border-collapse: collapse;
+  margin: 50px auto;
 }
 
 table, td {
-  padding: 1px;
+  padding: 5px;
 }
 
-tr {
-  border-bottom: 1px solid #333;
+td {
+  text-align: center;
 }
 
-thead, tfoot {
+#weekday-row td {
+  border-bottom: 1px solid #303030;
+}
+
+thead {
   background-color: #e03d3d;
   color: #fff;
+}
+
+thead tr th {
+  padding: 10px 0;
 }
