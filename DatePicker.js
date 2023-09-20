@@ -10,7 +10,7 @@ class DatePicker {
   }
 
   render(date){
-    document.getElementById(this.id).innerHTML += getCalendarHTML(date);
+    generateCalendar(date);
   }
 }
 
@@ -51,73 +51,43 @@ function numToMonth(month){
   }
 }
 
-function getCalendarHTML(date){
+function generateCalendar(date){
   var month = numToMonth(date.getMonth() + 1); // Add one since getMonth index starts at 0
   var year = date.getFullYear();
   // Contains sample data. Dates will need to be added programmatically.
-  return `
-  <table>
-    <thead>
-      <tr>
-        <th colspan="7">${month} ${year}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="weekday-row">
-        <td>Su</td>
-        <td>Mo</td>
-        <td>Tu</td>
-        <td>We</td>
-        <td>Th</td>
-        <td>Fr</td>
-        <td>Sa</td>
-      </tr>
-      <tr class="date-row">
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-      </tr>
-      <tr class="date-row">
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-      </tr>
-      <tr class="date-row">
-        <td>15</td>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
-        <td>21</td>
-      </tr>
-      <tr class="date-row">
-        <td>22</td>
-        <td>23</td>
-        <td>24</td>
-        <td>25</td>
-        <td>26</td>
-        <td>27</td>
-        <td>28</td>
-      </tr>
-      <tr class="date-row">
-        <td>29</td>
-        <td>30</td>
-        <td>31</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-      </tr>
-    </tbody>
-  </table>
-  `
+  const table = document.createElement("table");
+  const tableHead = document.createElement("thead");
+  const tableHeadRow = document.createElement("tr").setAttribute("id", "calendar-title");
+  const tableHeadCell = document.createElement("th").setAttribute("colspan", "7");
+  tableHeadCell.textContent(`${month} ${year}`)
+
+  const tableBody = document.createElement("tbody");
+  const tableBodyRowWeekday = document.createElement("tr").setAttribute("id", "weekday-row");
+  const tableBodyRowWeekdayCellSu = document.createElement("td").textContent("Su");
+  const tableBodyRowWeekdayCellMo = document.createElement("td").textContent("Mo");
+  const tableBodyRowWeekdayCellTu = document.createElement("td").textContent("Tu");
+  const tableBodyRowWeekdayCellWe = document.createElement("td").textContent("We");
+  const tableBodyRowWeekdayCellTh = document.createElement("td").textContent("Th");
+  const tableBodyRowWeekdayCellFr = document.createElement("td").textContent("Fr");
+  const tableBodyRowWeekdayCellSa = document.createElement("td").textContent("Sa");
+
+  // <table>
+  //   <thead>
+  //     <tr id="calendar-title">
+  //       <th colspan="7">${month} ${year}</th>
+  //     </tr>
+  //   </thead>
+  //   <tbody>
+  //     <tr id="weekday-row">
+  //       <td>Su</td>
+  //       <td>Mo</td>
+  //       <td>Tu</td>
+  //       <td>We</td>
+  //       <td>Th</td>
+  //       <td>Fr</td>
+  //       <td>Sa</td>
+  //     </tr>
+  //   </tbody>
+  // </table>
+  
 }
