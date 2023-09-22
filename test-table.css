@@ -11,7 +11,7 @@ body {font-family: Tahoma, Arial, sans-serif; font-size: 13px;
 .example tr:nth-child(odd) td {background: #dfe1e7;}
 .example tr:first-child td {border-top: none; background: #687291;
     color: #ffffff; white-space: nowrap;}
-
+/*css for the tables which implement the TableTemplate.js file*/
 .original {
     display: inline-block;
 }
