@@ -10,6 +10,7 @@ class DatePicker {
   }
 
   render(date){
+    console.log("called")
     generateCalendar(date);
   }
 }
@@ -59,17 +60,18 @@ function generateCalendar(date){
   const tableHead = document.createElement("thead");
   const tableHeadRow = document.createElement("tr").setAttribute("id", "calendar-title");
   const tableHeadCell = document.createElement("th").setAttribute("colspan", "7");
-  tableHeadCell.textContent(`${month} ${year}`)
+  //tableHeadCell.innerHTML = `${month} ${year}`
 
   const tableBody = document.createElement("tbody");
   const tableBodyRowWeekday = document.createElement("tr").setAttribute("id", "weekday-row");
-  const tableBodyRowWeekdayCellSu = document.createElement("td").textContent("Su");
-  const tableBodyRowWeekdayCellMo = document.createElement("td").textContent("Mo");
-  const tableBodyRowWeekdayCellTu = document.createElement("td").textContent("Tu");
-  const tableBodyRowWeekdayCellWe = document.createElement("td").textContent("We");
-  const tableBodyRowWeekdayCellTh = document.createElement("td").textContent("Th");
-  const tableBodyRowWeekdayCellFr = document.createElement("td").textContent("Fr");
-  const tableBodyRowWeekdayCellSa = document.createElement("td").textContent("Sa");
+  const tableBodyRowWeekdayCellSu = document.createElement("td").innerHTML = "Su";
+  const tableBodyRowWeekdayCellMo = document.createElement("td").innerHTML = "Mo";
+  const tableBodyRowWeekdayCellTu = document.createElement("td").innerHTML = "Tu";
+  const tableBodyRowWeekdayCellWe = document.createElement("td").innerHTML = "We";
+  const tableBodyRowWeekdayCellTh = document.createElement("td").innerHTML = "Th";
+  const tableBodyRowWeekdayCellFr = document.createElement("td").innerHTML = "Fr";
+  const tableBodyRowWeekdayCellSa = document.createElement("td").innerHTML = "Sa";
+
 
   // <table>
   //   <thead>
@@ -91,3 +93,28 @@ function generateCalendar(date){
   // </table>
   
 }
+
+
+const div1 = document.getElementById("datepicker1");
+const div2 = document.getElementById("datepicker2");
+const button1 = document.createElement("button")
+const button2 = document.createElement("button")
+
+var datePicker1 = new DatePicker("datepicker1", function (id, fixedDate) {
+  console.log("DatePicker with id", id,
+      "selected date:", fixedDate.month + "/" + fixedDate.day + "/" + fixedDate.year);
+});
+
+var datePicker2 = new DatePicker("datepicker2", function (id, fixedDate) {
+  console.log("DatePicker with id", id,
+      "selected date:", fixedDate.month + "/" + fixedDate.day + "/" + fixedDate.year);
+});
+
+button1.onclick = function () {datePicker1.render(new Date())}
+button2.onclick = function () {datePicker2.render(new Date())}
+
+button1.innerHTML = "Generate"
+button2.innerHTML = "Generate"
+div1.appendChild(button1);
+div2.appendChild(button2);
+
