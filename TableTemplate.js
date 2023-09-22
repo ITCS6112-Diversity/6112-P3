@@ -6,46 +6,85 @@ class TableTemplate {
     }
     
     static fillIn(id, dictionary, columnName) {
-        console.log(id);
-        console.log(columnName);
-        var table = document.getElementById(id);
-    
-        /*console.log(this.template);
-        var updated = "";
-        for (var i = 0; i<this.template.length; i++) {
-            var c = this.template[i];
-            if (c === '{') {
-                var c2 = this.template[i+1];
-                if (c2 !== '{') {
-                    updated += c2;
-                    ++i;
-                    continue;
-                }
-                i++;
-                
-                var keyword = "";
-                for (var j = i+1; j<this.template.length; j++, i++) {
-                    var c3 = this.template[j];
-                    var c4 = this.template[j+1];
-                    if (c3 === '}' && c4 === '}') {
-                        i += 2;
-                        break;
-                    } else {
-                        keyword += c3;
+        // TODO: See if we can move this out of this function (okay if not)
+        function fillInTemplate(template, dictionary) {
+            var updated = "";
+            for (var i = 0; i<template.length; i++) {
+                var c = template[i];
+                if (c === '{') {
+                    var c2 = template[i+1];
+                    if (c2 !== '{') {
+                        updated += c2;
+                        ++i;
+                        continue;
                     }
-                }
-                
-                if (keyword in dictionary) {
-                    updated += dictionary[keyword];
+                    i++;
+                    
+                    var keyword = "";
+                    for (var j = i+1; j<template.length; j++, i++) {
+                        var c3 = template[j];
+                        var c4 = template[j+1];
+                        if (c3 === '}' && c4 === '}') {
+                            i += 2;
+                            break;
+                        } else {
+                            keyword += c3;
+                        }
+                    }
+                    
+                    if (keyword in dictionary) {
+                        updated += dictionary[keyword];
+                    } else {
+                        updated += "";
+                    }
                 } else {
-                    updated += "";
+                    updated += c;
                 }
+            }
+            //console.log(updated);
+            return updated;
+        }
+        var table = document.getElementById(id);
+        
+        // Show the table
+        table.style = "visibility:visible;";
+        
+        // Decide which column to process
+        // And process the header
+        var to_process = 2;     // 2 = all
+        if (columnName == "Length") {
+            to_process = 1;
+        } else if (columnName == "Part Number") {
+            to_process = 0;
+        }
+        table.rows[0].cells[0].innerHTML = "Part Number";
+        table.rows[0].cells[1].innerHTML = "Length";
+        //console.log(to_process);
+        
+        for (var i = 1; i<table.rows.length; i++) {
+            var row = table.rows[i].cells;
+            if (to_process == 0) {
+                row[0].innerHTML = fillInTemplate(row[0].innerHTML, dictionary);
+            } else if (to_process == 1) {
+                //row[1].innerHTML = "U1";
+                row[1].innerHTML = fillInTemplate(row[1].innerHTML, dictionary);
             } else {
-                updated += c;
+                //row[0].innerHTML = "U0_2";
+                //row[1].innerHTML = "U1_2";
+                row[0].innerHTML = fillInTemplate(row[0].innerHTML, dictionary);
+                row[1].innerHTML = fillInTemplate(row[1].innerHTML, dictionary);
             }
         }
-        console.log(updated);
-        return updated;*/
+        
+        // Process the header
+        //if (to_process != 2) {
+        //    var cell = table.rows[0].cells[0];
+        //    console.log(cell);
+        //}
+        //console.log("------------------");
+    
+        /*console.log(this.template);
+        */
     }
 }
 
