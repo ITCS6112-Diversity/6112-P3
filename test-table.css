@@ -11,3 +11,22 @@ body {font-family: Tahoma, Arial, sans-serif; font-size: 13px;
 .example tr:nth-child(odd) td {background: #dfe1e7;}
 .example tr:first-child td {border-top: none; background: #687291;
     color: #ffffff; white-space: nowrap;}
+
+.original {
+    display: inline-block;
+}
+.original td {
+    padding: 2px 10px 2px 10px;
+    border-top: 1px solid #FFFFFF;
+    vertical-align: top;
+    background: #eeeff2;
+}
+.original tr:nth-child(odd) td {
+    background: #dfe1e7;
+}
+.original tr:first-child td {
+    border-top: none;
+    background: #916878;
+    color: #ffffff;
+    white-space: nowrap;
+}
