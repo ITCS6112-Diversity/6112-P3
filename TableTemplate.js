@@ -13,7 +13,7 @@ class TableTemplate {
                 var c = template[i];
                 if (c === '{') {
                     var c2 = template[i+1];
-                    if (c2 !== '{') {
+                    if(c2!== '{') {
                         updated += c2;
                         ++i;
                         continue;
@@ -41,7 +41,6 @@ class TableTemplate {
                     updated += c;
                 }
             }
-            //console.log(updated);
             return updated;
         }
         var table = document.getElementById(id);
@@ -59,7 +58,6 @@ class TableTemplate {
         }
         table.rows[0].cells[0].innerHTML = "Part Number";
         table.rows[0].cells[1].innerHTML = "Length";
-        //console.log(to_process);
         
         for (var i = 1; i<table.rows.length; i++) {
             var row = table.rows[i].cells;
@@ -69,23 +67,12 @@ class TableTemplate {
                 //row[1].innerHTML = "U1";
                 row[1].innerHTML = fillInTemplate(row[1].innerHTML, dictionary);
             } else {
-                //row[0].innerHTML = "U0_2";
-                //row[1].innerHTML = "U1_2";
+
                 row[0].innerHTML = fillInTemplate(row[0].innerHTML, dictionary);
                 row[1].innerHTML = fillInTemplate(row[1].innerHTML, dictionary);
             }
         }
-        
-        // Process the header
-        //if (to_process != 2) {
-        //    var cell = table.rows[0].cells[0];
-        //    console.log(cell);
-        //}
-        //console.log("------------------");
-    
-        /*console.log(this.template);
-        */
+
     }
 }
 
-//exports.TemplateProcessor = TemplateProcessor;
