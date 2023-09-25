@@ -1,5 +1,5 @@
 'use strict';
-
+//Table Template javascript file
 class TableTemplate {
     constructor(template) {
         this.template = template;
