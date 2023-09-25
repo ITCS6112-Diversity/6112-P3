@@ -7,7 +7,7 @@ class TableTemplate {
     
     static fillIn(id, dictionary, columnName) {
         // TODO: See if we can move this out of this function (okay if not)
-        function fillInTemplate(template, dictionary) {
+        function fillInTemplate(template) {
             var updated = "";
             for (var i = 0; i<template.length; i++) {
                 var c = template[i];
@@ -51,9 +51,9 @@ class TableTemplate {
         // Decide which column to process
         // And process the header
         var to_process = 2;     // 2 = all
-        if (columnName == "Length") {
+        if (columnName === "Length") {
             to_process = 1;
-        } else if (columnName == "Part Number") {
+        } else if (columnName === "Part Number") {
             to_process = 0;
         }
         table.rows[0].cells[0].innerHTML = "Part Number";
@@ -61,9 +61,9 @@ class TableTemplate {
         
         for (var i = 1; i<table.rows.length; i++) {
             var row = table.rows[i].cells;
-            if (to_process == 0) {
+            if (to_process === 0) {
                 row[0].innerHTML = fillInTemplate(row[0].innerHTML, dictionary);
-            } else if (to_process == 1) {
+            } else if (to_process === 1) {
                 //row[1].innerHTML = "U1";
                 row[1].innerHTML = fillInTemplate(row[1].innerHTML, dictionary);
             } else {
