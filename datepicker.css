@@ -30,3 +30,13 @@ thead {
 thead tr th {
   padding: 10px 0;
 }
+
+.month-selector, td{
+  cursor: pointer;
+  user-select: none;
+}
+
+td.not-in-month {
+  color: gray;
+  cursor: auto;
+}
